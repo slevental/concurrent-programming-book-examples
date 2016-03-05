@@ -13,12 +13,12 @@ public class JdkLockMutexTest extends MutexTest {
             final Lock lck = new ReentrantLock();
 
             @Override
-            public void acquire_mutex() {
+            public void acquire_mutex(int i) {
                 lck.lock();
             }
 
             @Override
-            public void release_mutex() {
+            public void release_mutex(int i) {
                 lck.unlock();
             }
         };

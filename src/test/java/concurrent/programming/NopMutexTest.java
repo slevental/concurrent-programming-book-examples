@@ -8,11 +8,11 @@ public class NopMutexTest extends MutexTest {
     protected Mutex createMutex() {
         return new Mutex() {
             @Override
-            public void acquire_mutex() {
+            public void acquire_mutex(int i) {
             }
 
             @Override
-            public void release_mutex() {
+            public void release_mutex(int i) {
 
             }
         };

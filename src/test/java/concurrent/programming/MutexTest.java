@@ -12,7 +12,18 @@ import static org.junit.Assert.assertEquals;
  */
 public abstract class MutexTest extends ConcurrentTest {
     static final int N = 1000;
+
+    private final int threads;
     private MutableObject[] mutableObjects;
+
+
+    public MutexTest(int threads) {
+        this.threads = threads;
+    }
+
+    public MutexTest() {
+        this(Runtime.getRuntime().availableProcessors() * 4);
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -32,7 +43,7 @@ public abstract class MutexTest extends ConcurrentTest {
             } finally {
                 s.atomicState.incrementAndGet();
             }
-        }, mutableObjects, 16, 1000000);
+        }, mutableObjects, threads, 1000000);
 
         assertAtomicity(mutableObjects);
     }
